@@ -1,4 +1,4 @@
-package com.mahesh.spring.RestCRUD.student;
+package com.mahesh.spring.RestCRUD.entity;
 
 public class Student {
 
