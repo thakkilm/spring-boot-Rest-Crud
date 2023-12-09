@@ -1,7 +1,7 @@
 package com.mahesh.springboot.cruddemo.demo;
 
-import com.mahesh.springboot.cruddemo.dao.EmployeeDAO;
 import com.mahesh.springboot.cruddemo.entity.Employee;
+import com.mahesh.springboot.cruddemo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,15 +13,16 @@ import java.util.List;
 @RequestMapping("/api")
 public class EmployeDAOController {
 
-    private EmployeeDAO employeeDAO;
+
+    private EmployeeService employeeService;
 
     @Autowired
-    public EmployeDAOController(EmployeeDAO employeeDAO) {
-        this.employeeDAO = employeeDAO;
+    public EmployeDAOController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
     }
 
     @GetMapping("/employees")
     public List<Employee> getAllEmployees(){
-        return  employeeDAO.findAll();
+        return  employeeService.findAll();
     }
 }
