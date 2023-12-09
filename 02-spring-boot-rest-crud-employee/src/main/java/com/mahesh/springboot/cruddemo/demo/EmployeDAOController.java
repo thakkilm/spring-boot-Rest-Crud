@@ -27,10 +27,11 @@ public class EmployeDAOController {
         return  employeeService.findAll();
     }
 
-//    @GetMapping("/employees/{id}")
-//    public Employee findById(@PathVariable int id){
-//        return  employeeService.findByID(id);
-//    }
+    @GetMapping("/employee/{id}")
+    public List<Employee> deleteById(@PathVariable int id){
+          employeeService.deleteById(id);
+          return  employeeService.findAll();
+    }
 
     @GetMapping("/employees/{id}")
     public Employee save(@PathVariable int id){
@@ -42,7 +43,6 @@ public class EmployeDAOController {
         }
         else {
             return  employeeService.findByID(id);
-
         }
     }
 }
