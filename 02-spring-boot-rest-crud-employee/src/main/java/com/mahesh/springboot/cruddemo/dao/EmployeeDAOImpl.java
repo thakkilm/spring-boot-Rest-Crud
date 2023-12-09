@@ -29,4 +29,10 @@ public class EmployeeDAOImpl implements EmployeeDAO{
         Employee employee=entityManager.find(Employee.class,id);
         return employee;
     }
+
+    @Override
+    public Employee save(Employee employee) {
+        Employee employee1=entityManager.merge(employee);
+        return employee1;
+    }
 }

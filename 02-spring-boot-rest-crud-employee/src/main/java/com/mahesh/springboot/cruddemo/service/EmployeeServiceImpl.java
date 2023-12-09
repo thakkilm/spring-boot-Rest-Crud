@@ -2,6 +2,7 @@ package com.mahesh.springboot.cruddemo.service;
 
 import com.mahesh.springboot.cruddemo.dao.EmployeeDAO;
 import com.mahesh.springboot.cruddemo.entity.Employee;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,5 +23,11 @@ public class EmployeeServiceImpl implements EmployeeService{
     @Override
     public Employee findByID(int id) {
         return employeeDAO.findByID(id);
+    }
+
+    @Override
+    @Transactional
+    public Employee save(Employee employee) {
+        return employeeDAO.save(employee);
     }
 }

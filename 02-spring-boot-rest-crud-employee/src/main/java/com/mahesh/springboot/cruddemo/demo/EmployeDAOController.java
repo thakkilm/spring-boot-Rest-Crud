@@ -27,8 +27,22 @@ public class EmployeDAOController {
         return  employeeService.findAll();
     }
 
+//    @GetMapping("/employees/{id}")
+//    public Employee findById(@PathVariable int id){
+//        return  employeeService.findByID(id);
+//    }
+
     @GetMapping("/employees/{id}")
-    public Employee findById(@PathVariable int id){
-        return  employeeService.findByID(id);
+    public Employee save(@PathVariable int id){
+        if(id==0){
+            int tempId=5;
+            Employee employee=new Employee(tempId,"Prasad","Kadiyala","Chaitu@gmail.com");
+            employeeService.save(employee);
+            return  employeeService.findByID(tempId);
+        }
+        else {
+            return  employeeService.findByID(id);
+
+        }
     }
 }
