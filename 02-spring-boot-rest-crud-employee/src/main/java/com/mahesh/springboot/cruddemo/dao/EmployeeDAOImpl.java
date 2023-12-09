@@ -3,9 +3,11 @@ package com.mahesh.springboot.cruddemo.dao;
 import com.mahesh.springboot.cruddemo.entity.Employee;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public class EmployeeDAOImpl implements EmployeeDAO{
 
     EntityManager entityManager;
