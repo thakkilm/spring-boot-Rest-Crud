@@ -1,45 +1,50 @@
 package com.mahesh.springboot.cruddemo.service;
 
-import com.mahesh.springboot.cruddemo.dao.EmployeeDAO;
+import com.mahesh.springboot.cruddemo.dao.EmployeeRepository;
 import com.mahesh.springboot.cruddemo.entity.Employee;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class EmployeeServiceImpl implements EmployeeService{
 
-    private EmployeeDAO employeeDAO;
+    private EmployeeRepository employeeRepository ;
 
-    public EmployeeServiceImpl(EmployeeDAO employeeDAO) {
-        this.employeeDAO = employeeDAO;
+    public EmployeeServiceImpl(EmployeeRepository employeeRepository ) {
+        this.employeeRepository = employeeRepository;
     }
 
     @Override
     public List<Employee> findAll() {
-        return employeeDAO.findAll();
+        return employeeRepository.findAll();
     }
 
     @Override
-    public Employee findByID(int id) {
-        return employeeDAO.findByID(id);
+    public Employee findById(int id) {
+        Optional<Employee> result = employeeRepository.findById(id);
+        Employee employee=null;
+        if(result.isPresent()){
+            employee=result.get();
+        }
+        return employee;
     }
 
     @Override
-    @Transactional
     public Employee save(Employee employee) {
-        return employeeDAO.save(employee);
+        return employeeRepository.save(employee);
     }
 
     @Override
-    @Transactional
+
     public void deleteById(int id) {
-        employeeDAO.deleteById(id);
+        employeeRepository.deleteById(id);
     }
 
     @Override
-    @Transactional
     public void updateById(Employee employee) {
-        employeeDAO.updateById(employee);
+        employeeRepository.save(employee);
     }
 }

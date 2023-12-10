@@ -32,7 +32,7 @@ public class EmployeDAOController {
 
     @PostMapping("/employees/{id}")
     public List<Employee> updateById(@PathVariable int id,@RequestBody Employee employee){
-        Employee employee1=employeeService.findByID(id);
+        Employee employee1=employeeService.findById(id);
         employee1.setEmail(employee.getEmail());
         employee1.setFirstName(employee.getFirstName());
         employee1.setLastName(employee.getLastName());
@@ -43,7 +43,7 @@ public class EmployeDAOController {
     @GetMapping("/employees/{id}")
     public Employee getEmployeeById(@PathVariable int id){
 
-            return  employeeService.findByID(id);
+            return  employeeService.findById(id);
 
     }
 
