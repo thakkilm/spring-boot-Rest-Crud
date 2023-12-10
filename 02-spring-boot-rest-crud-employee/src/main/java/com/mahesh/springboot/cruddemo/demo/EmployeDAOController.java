@@ -24,10 +24,20 @@ public class EmployeDAOController {
         return  employeeService.findAll();
     }
 
-    @PostMapping("/employees/{id}")
+    @DeleteMapping("/employees/{id}")
     public List<Employee> deleteById(@PathVariable int id){
           employeeService.deleteById(id);
           return  employeeService.findAll();
+    }
+
+    @PostMapping("/employees/{id}")
+    public List<Employee> updateById(@PathVariable int id,@RequestBody Employee employee){
+        Employee employee1=employeeService.findByID(id);
+        employee1.setEmail(employee.getEmail());
+        employee1.setFirstName(employee.getFirstName());
+        employee1.setLastName(employee.getLastName());
+        employeeService.updateById(employee1);
+        return  employeeService.findAll();
     }
 
     @GetMapping("/employees/{id}")
@@ -44,4 +54,5 @@ public class EmployeDAOController {
         employeeService.save(theEmployee);
         return  theEmployee;
     }
+
 }

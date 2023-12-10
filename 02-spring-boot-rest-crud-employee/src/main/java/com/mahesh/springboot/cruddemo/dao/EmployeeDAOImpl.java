@@ -41,4 +41,10 @@ public class EmployeeDAOImpl implements EmployeeDAO{
         Employee employee=entityManager.find(Employee.class,id);
         entityManager.remove(employee);
     }
+
+    @Override
+    public void updateById(Employee employee) {
+        Employee employee1=entityManager.merge(employee);
+
+    }
 }
