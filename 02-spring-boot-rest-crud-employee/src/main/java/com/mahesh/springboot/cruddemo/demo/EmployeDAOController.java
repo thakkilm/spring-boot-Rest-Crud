@@ -3,10 +3,7 @@ package com.mahesh.springboot.cruddemo.demo;
 import com.mahesh.springboot.cruddemo.entity.Employee;
 import com.mahesh.springboot.cruddemo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,22 +24,24 @@ public class EmployeDAOController {
         return  employeeService.findAll();
     }
 
-    @GetMapping("/employee/{id}")
+    @PostMapping("/employees/{id}")
     public List<Employee> deleteById(@PathVariable int id){
           employeeService.deleteById(id);
           return  employeeService.findAll();
     }
 
     @GetMapping("/employees/{id}")
-    public Employee save(@PathVariable int id){
-        if(id==0){
-            int tempId=5;
-            Employee employee=new Employee(tempId,"Prasad","Kadiyala","Chaitu@gmail.com");
-            employeeService.save(employee);
-            return  employeeService.findByID(tempId);
-        }
-        else {
+    public Employee getEmployeeById(@PathVariable int id){
+
             return  employeeService.findByID(id);
-        }
+
+    }
+
+    @PostMapping("/employees")
+    public  Employee save(@RequestBody Employee theEmployee){
+//        int tempId=5;
+//        Employee employee=new Employee(tempId,"Prasad","Kadiyala","Chaitu@gmail.com");
+        employeeService.save(theEmployee);
+        return  theEmployee;
     }
 }
